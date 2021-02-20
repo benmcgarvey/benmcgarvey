@@ -1,0 +1,29 @@
+services:
+  # Ghost
+  - type: web
+    name: ghost
+    env: docker
+    dockerfilePath: ./ghost/Dockerfile
+    dockerContext: ./ghost
+    healthCheckPath: /
+    disk:
+      name: ghost-data
+      mountPath: /var/lib/ghost/content
+      sizeGB: 5
+  # Nextjs
+  - type: web
+    name: frontend
+    env: static
+    buildCommand: cd frontend; yarn; yarn build; yarn export
+    staticPublishPath: ./frontend/out
+    envVars:
+      - key: GHOST_API_URL
+        fromService:
+          name: ghost
+          type: web
+          property: host
+      - key: GHOST_API_KEY
+        fromService:
+          name: ghost
+          type: web
+          property: port
