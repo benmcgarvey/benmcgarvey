@@ -14,16 +14,12 @@ services:
   - type: web
     name: frontend
     env: static
-    buildCommand: cd frontend; yarn; yarn build; yarn export
+    buildCommand: cd frontend; yarn; yarn build; yarn export;
     staticPublishPath: ./frontend/out
     envVars:
-      - key: GHOST_API_URL
+      - key: GHOST_API_HOST
         fromService:
           name: ghost
           type: web
           property: host
-      - key: GHOST_API_KEY
-        fromService:
-          name: ghost
-          type: web
-          property: port
+      - fromService: benmcgarvey
