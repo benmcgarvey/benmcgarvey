@@ -22,4 +22,4 @@ services:
           name: ghost
           type: web
           property: host
-      - fromService: benmcgarvey
+      - fromGroup: benmcgarvey
