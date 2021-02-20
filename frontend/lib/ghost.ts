@@ -5,7 +5,7 @@ import { Node } from 'unist'
 import { collections as config } from '@routesConfig'
 import { Collections } from '@lib/collections'
 
-import { ghostAPIUrl, ghostAPIKey, processEnv, ProcessEnvProps } from '@lib/processEnv'
+import { ghostAPIUrl, ghostContentAPIKey, processEnv, ProcessEnvProps } from '@lib/processEnv'
 import { imageDimensions, normalizedImageUrl, Dimensions } from '@lib/images'
 import { IToC } from '@lib/toc'
 
@@ -55,7 +55,7 @@ export interface GhostAuthors extends BrowseResults<GhostAuthor> {}
 
 const api = new GhostContentAPI({
   url: ghostAPIUrl,
-  key: ghostAPIKey,
+  key: ghostContentAPIKey,
   version: 'v3',
 })
 
